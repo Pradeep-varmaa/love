@@ -1,0 +1,98 @@
+.my-masonry-grid {
+
+  display: flex;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 20px 10px;
+
+  gap: 16px;
+
+  box-sizing: border-box;
+  background-color: #000000;
+
+}
+
+.my-masonry-grid_column {
+
+  background-clip: padding-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+
+}
+
+/* Card */
+
+.galleryCard {
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: white;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.08);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+
+}
+
+/* Hover */
+
+.galleryCard:hover {
+
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 12px 24px rgba(0,0,0,.15);
+
+}
+
+/* Image */
+
+.galleryImage {
+
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  border-radius: 20px;
+
+  object-fit: cover;
+
+  transition:
+    transform .5s ease;
+
+}
+
+/* Zoom */
+
+.galleryCard:hover .galleryImage {
+
+  transform: scale(1.05);
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+  .my-masonry-grid{
+
+    gap: 10px;
+
+    padding: 10px;
+
+  }
+
+}

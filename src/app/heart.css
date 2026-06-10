@@ -1,0 +1,345 @@
+html,
+body {
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    max-width: 100%;
+
+    min-height: 100%;
+
+    overflow-x: hidden;
+
+    background: #0f172a;
+}
+
+/* Reset */
+
+*{
+    box-sizing: border-box;
+}
+
+/* Container */
+
+.heart-container {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 0, 128, 0.35),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(255, 0, 0, 0.3),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #831843 0%,
+            #be185d 45%,
+            #dc2626 100%
+        );
+
+    transition: all .7s ease;
+}
+
+/* Floating Glow */
+
+.heart-container::before,
+.heart-container::after{
+
+    content: '';
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    z-index: 0;
+
+    opacity: .5;
+}
+
+.heart-container::before{
+
+    width: 320px;
+    height: 320px;
+
+    background: #ff0088;
+
+    top: -100px;
+    left: -100px;
+}
+
+.heart-container::after{
+
+    width: 280px;
+    height: 280px;
+
+    background: #ff5f8f;
+
+    bottom: -100px;
+    right: -100px;
+}
+
+/* Heart Button */
+
+.heart-btn {
+
+    border: none;
+    background: none;
+
+    font-size: clamp(120px, 18vw, 250px);
+
+    cursor: pointer;
+
+    position: relative;
+
+    z-index: 10;
+
+    transition:
+        transform .3s ease,
+        filter .3s ease;
+
+    animation: pulse 2s infinite;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(255,0,128,.7)
+        )
+        drop-shadow(
+            0 0 45px rgba(255,0,128,.5)
+        );
+}
+
+/* Hover */
+
+.heart-btn:hover{
+
+    transform: scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 0 30px rgba(255,0,128,.9)
+        )
+        drop-shadow(
+            0 0 60px rgba(255,0,128,.7)
+        );
+}
+
+/* Heart Pulse */
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.08);
+    }
+
+    50% {
+        transform: scale(1.16);
+    }
+}
+
+/* Heading */
+
+.heading {
+
+    margin-top: 20px;
+
+    font-size: clamp(32px, 6vw, 60px);
+
+    font-weight: 800;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff96aa,
+            #fff1f4
+        );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.15);
+
+    z-index: 10;
+}
+
+/* Heart Explosion */
+
+.heart-btn.explode {
+
+    animation:
+        heartBlast 1s ease forwards;
+}
+
+@keyframes heartBlast {
+
+    0% {
+
+        transform: scale(1);
+
+        opacity: 1;
+    }
+
+    30% {
+
+        transform: scale(1.5);
+    }
+
+    100% {
+
+        transform: scale(0);
+
+        opacity: 0;
+    }
+}
+
+/* Particles */
+
+.particle {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 5;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #fff,
+            #ff4d8d,
+            #ff0066
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,77,141,.9),
+        0 0 25px rgba(255,0,102,.6);
+
+    animation:
+        particleBlast 1.4s ease-out forwards;
+}
+
+/* Different Shapes */
+
+.particle:nth-child(3n){
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9ec4,
+            #ff2d75
+        );
+}
+
+.particle:nth-child(4n){
+
+    width: 14px;
+    height: 14px;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff7,
+            #ffd700,
+            #ff8c00
+        );
+}
+
+/* Particle Animation */
+
+@keyframes particleBlast {
+
+    0% {
+
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(0);
+
+        opacity: 1;
+    }
+
+    20% {
+
+        transform:
+            translate3d(-50%, -50%, 0)
+            scale(1.2);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translate3d(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y)),
+                0
+            )
+            rotate(var(--r))
+            scale(0);
+
+        opacity: 0;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .heart-btn{
+        font-size: 140px;
+    }
+
+    .heading{
+        font-size: 34px;
+        padding: 0 20px;
+    }
+
+    .particle{
+        width: 14px;
+        height: 14px;
+    }
+}

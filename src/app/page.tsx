@@ -1,65 +1,254 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+// import { useState , useEffect} from 'react';
+import { AnimatedBackground } from '@/components/AnimatedBackground';
+// import { LoveMessage } from '@/components/LoveMessage';
+// import { ImageGallery } from '@/components/ImageGallery';
+// import { MusicPlayer } from '@/components/MusicPlayer';
+// import { ThemeCustomizer } from '@/components/ThemeCustomizer';
+// import { motion } from 'framer-motion';
+
+// export default function Home() {
+//   const [selectedImage, setSelectedImage] = useState('');
+//   const [message, setMessage] = useState('I Love You ❤️');
+//   const [themeGradient, setThemeGradient] = useState('from-pink-900 via-pink-700 to-red-600');
+//   const [currentSection, setCurrentSection] = useState(0);
+
+//   const sections = ['Message', 'Images', 'Music', 'Theme'];
+
+//   useEffect(() => {
+//      if (!navigator.geolocation) return;
+//     navigator.geolocation.getCurrentPosition((position)=>{
+//       const {latitude, longitude} = position.coords;
+//       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+//     })
+//   },[])
+
+//   const handleScroll = (index: number) => {
+//     setCurrentSection(index);
+//   };
+
+//   return (
+//     <main
+//       className={`min-h-screen bg-gradient-to-br ${themeGradient} transition-all duration-700 overflow-hidden`}
+//     >
+//       {/* Animated Background */}
+//       <AnimatedBackground />
+
+//       {/* Glass Morphism Container */}
+//       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
+//         {/* Header */}
+//         <motion.div
+//           className="text-center py-8"
+//           initial={{ opacity: 0, y: -20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.8 }}
+//         >
+//           <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
+//             💕 Love Presentation 💕
+//           </h1>
+//           <p className="text-pink-200 text-lg">
+//             Express your feelings in the most beautiful way
+//           </p>
+//         </motion.div>
+
+//         {/* Navigation Dots */}
+//         <div className="flex justify-center gap-3 mb-12">
+//           {sections.map((section, idx) => (
+//             <motion.button
+//               key={idx}
+//               onClick={() => handleScroll(idx)}
+//               className={`px-4 py-2 rounded-full font-semibold transition-all ${
+//                 currentSection === idx
+//                   ? 'bg-white text-pink-600 shadow-lg'
+//                   : 'bg-white/20 text-white hover:bg-white/30'
+//               }`}
+//               whileHover={{ scale: 1.05 }}
+//               whileTap={{ scale: 0.95 }}
+//             >
+//               {section}
+//             </motion.button>
+//           ))}
+//         </div>
+
+//         {/* Content Sections */}
+//         <div className="space-y-12">
+//           {/* Love Message Section */}
+//           <motion.div
+//             className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: currentSection === 0 ? 1 : 0.5 }}
+//             transition={{ duration: 0.5 }}
+//           >
+//             <LoveMessage onMessageChange={setMessage} />
+//           </motion.div>
+
+//           {/* Image Gallery Section */}
+//           <motion.div
+//             className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: currentSection === 1 ? 1 : 0.5 }}
+//             transition={{ duration: 0.5 }}
+//           >
+//             <ImageGallery
+//               onImageSelect={setSelectedImage}
+//               selectedImage={selectedImage}
+//             />
+//           </motion.div>
+
+//           {/* Music Player Section */}
+//           <motion.div
+//             className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: currentSection === 2 ? 1 : 0.5 }}
+//             transition={{ duration: 0.5 }}
+//           >
+//             <MusicPlayer />
+//           </motion.div>
+
+//           {/* Theme Customizer Section */}
+//           <motion.div
+//             className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: currentSection === 3 ? 1 : 0.5 }}
+//             transition={{ duration: 0.5 }}
+//           >
+//             <ThemeCustomizer onThemeChange={setThemeGradient} />
+//           </motion.div>
+//         </div>
+
+//         {/* Action Buttons */}
+//         <motion.div
+//           className="flex flex-col md:flex-row gap-4 justify-center mt-12 mb-12"
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.8, delay: 0.2 }}
+//         >
+//           <motion.button
+//             className="px-8 py-3 bg-white text-pink-600 font-bold rounded-full hover:shadow-lg transition-shadow"
+//             whileHover={{ scale: 1.05 }}
+//             whileTap={{ scale: 0.95 }}
+//           >
+//             💌 Share
+//           </motion.button>
+//           <motion.button
+//             className="px-8 py-3 bg-pink-500 text-white font-bold rounded-full hover:shadow-lg transition-shadow"
+//             whileHover={{ scale: 1.05 }}
+//             whileTap={{ scale: 0.95 }}
+//           >
+//             📸 Take Screenshot
+//           </motion.button>
+//           <motion.button
+//             className="px-8 py-3 bg-red-500 text-white font-bold rounded-full hover:shadow-lg transition-shadow"
+//             whileHover={{ scale: 1.05 }}
+//             whileTap={{ scale: 0.95 }}
+//           >
+//             ⬇️ Download
+//           </motion.button>
+//         </motion.div>
+
+//         {/* Footer */}
+//         <motion.footer
+//           className="text-center py-8 text-pink-200 text-sm"
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ duration: 0.8, delay: 0.4 }}
+//         >
+//           <p>Made with 💕 for someone special</p>
+//         </motion.footer>
+//       </div>
+//     </main>
+//   );
+// }
+
+
+import React, { useState } from "react"
+
+import { useRouter } from "next/navigation"
+
+// import { AnimatedBackground } from "@/components/AnimatedBackground"
+
+import { useAudio } from "@/context/AudioContext"
+
+import "./heart.css"
+
+export default function HeartBlast() {
+
+  const router = useRouter()
+
+  const { playMusic } = useAudio()
+
+  const [explode, setExplode] =
+    useState(false)
+
+  const handleClick = async () => {
+
+    // Prevent Multiple Clicks
+    if (explode) return
+
+    setExplode(true)
+
+    // Start Global Music
+    await playMusic()
+
+    // Navigate
+    setTimeout(() => {
+
+      router.push("/question")
+
+    }, 2000)
+
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+    <div className="heart-container">
+
+      <AnimatedBackground />
+
+      {!explode && (
+
+        <p className="heading">
+          Happy Birthday My Dear
+        </p>
+
+      )}
+
+      <button
+        className={`
+          heart-btn
+          ${explode ? "explode" : ""}
+        `}
+        onClick={handleClick}
+      >
+        ❤️
+      </button>
+
+      {explode &&
+
+        [...Array(40)].map((_, i) => (
+
+          <span
+            key={i}
+            className="particle"
+            style={{
+              "--x":
+                `${Math.random() * 240 - 120}px`,
+
+              "--y":
+                `${Math.random() * 240 - 120}px`,
+
+              "--r":
+                `${Math.random() * 720}deg`,
+            } as React.CSSProperties}
+          />
+
+        ))
+
+      }
+
     </div>
-  );
+
+  )
+
 }

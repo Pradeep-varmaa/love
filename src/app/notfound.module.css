@@ -1,0 +1,204 @@
+.container{
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4c0519,
+            #831843,
+            #be185d,
+            #e11d48
+        );
+}
+
+/* Card */
+
+.card{
+
+    position: relative;
+
+    width: 90%;
+    max-width: 600px;
+
+    padding: 60px 40px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.3);
+
+    text-align: center;
+
+    z-index: 10;
+
+    overflow: hidden;
+
+    animation: floatCard 4s ease-in-out infinite;
+}
+
+/* Gradient Text */
+
+.code{
+
+    font-size: clamp(70px, 12vw, 120px);
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    margin-bottom: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffd1dc,
+            #fff
+        );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.title{
+
+    color: white;
+
+    font-size: clamp(28px, 5vw, 36px);
+
+    margin-bottom: 15px;
+}
+
+.description{
+
+    color: rgba(255,255,255,0.85);
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+/* Button */
+
+.button{
+
+    border: none;
+
+    padding: 14px 32px;
+
+    border-radius: 999px;
+
+    background: white;
+
+    color: #be185d;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.button:hover{
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 8px 30px rgba(255,255,255,0.35);
+}
+
+/* Glow */
+
+.glow1,
+.glow2{
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: .45;
+
+    z-index: 0;
+}
+
+.glow1{
+
+    width: 350px;
+    height: 350px;
+
+    background: #ff4d8d;
+
+    top: -100px;
+    left: -100px;
+}
+
+.glow2{
+
+    width: 300px;
+    height: 300px;
+
+    background: #ff758f;
+
+    bottom: -100px;
+    right: -100px;
+}
+
+/* Animation */
+
+@keyframes floatCard{
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-10px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .card{
+        padding: 40px 24px;
+    }
+
+    .description{
+        font-size: 16px;
+    }
+}
